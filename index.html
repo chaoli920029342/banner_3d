@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<title>banner_3d</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<style type="text/css">
+.poster-main{position:relative;}
+.poster-main .poster-btn{position:absolute;z-index:100;top:50%;margin-top:-72px;width:145px;height:145px;cursor:pointer;}
+.poster-main .poster-prev-btn{background:url(../images/p1.png) 0 -552px;left:-65px;}
+.poster-main .poster-next-btn{background:url(../images/p1.png) -158px -552px;right:-65px;}
+.poster-main .poster-prev-btn.on{background:url(../images/p1.png) 0 -269px;}
+.poster-main .poster-next-btn.on{background:url(../images/p1.png) -158px -269px;}
+.poster-main .poster-list .poster-item{position:absolute;top:0;left:0;}
+</style>
+</head>
+<body>
+<div class="cx-main">
+	<div class="cx-part">
+		<div class="cx-inner">
+			<div class="focus pictureSlider poster-main" data-setting='{"width":1076,"height":660,"posterWidth":766,"posterHeight":663,"scale":0.8,"autoPlay":true,"delay":2500,"speed":400}'>
+				<div class="poster-btn poster-prev-btn"></div>
+				<ul class="poster-list">
+					<li class="poster-item"><img src="images/f1.png" width="100%" /></li>
+					<li class="poster-item"><img src="images/f2.png" width="100%" /></li>
+					<li class="poster-item"><img src="images/f3.png" width="100%" /></li>
+				</ul>
+				<div class="poster-btn poster-next-btn"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".pictureSlider").slideCarousel();
+});
+
+$(".poster-btn").mouseover(function(){
+	$(this).addClass("on");
+}).mouseout(function(){
+	$(this).removeClass("on");
+});
+</script>
+</body>
+</html>

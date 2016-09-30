@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>首页_股市直播</title>
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+
+<style type="text/css">
+.v_show{width:100%;overflow:hidden;position:relative;height:280px;margin:0 auto;}
+.v_cont{position:absolute;top:0;left:0;}
+.v_cont ul{text-align:center;font-size:0;}
+.v_cont ul li{height:278px;float:left;}
+.v_cont ul li a{width:100%;height:278px;display:block;}
+.v_cont ul li a .show_img{width:auto;height:278px; background-position:center top;background-repeat:no-repeat;}
+
+.v_out_p{position:relative;overflow:visible}
+.circle{width:100%;height:20px;text-align:center;font-size:0;}
+.circle li{width:12px;height:13px;text-align:center;text-indent:-9999px;margin:3px 8px;cursor:pointer;background:url(images/p3.png) no-repeat -14px -22px;display:inline-block;*display:inline;*zoom:1;}
+.circle .circle-cur{background:url(images/p3.png) no-repeat 0 -22px;}
+
+
+</style>
+</head>
+<body>
+<div class="headerwapper clearfix"><!--顶部菜单-->
+	<div class="headerwapper_l clearfix">
+		<div class="header_logo"></div>
+		<div class="header_title">
+			<a href="#" target="_blank" class="header_ton">首页</a>
+			<a href="#" target="_blank">直播</a>
+		</div>
+	</div>
+	<div class="headerwapper_r clearfix">
+		<div class="header_search">
+			<input type="text" placeholder="请输入您想搜索的直播" />
+			<span class="search_btn"></span>
+		</div>
+		<div class="header_login header_login1" ><!--未登录登录-->
+			<a href="javascript:void(0)" onclick="showLogin();">登录</a>|<a href="#">注册</a>
+		</div><!--未登录登录-->
+		<div class="header_login header_login2" style="display:none;">欢迎您：<span>股海鲍鱼</span><a href="#">(进入直播室)</a><span class="exit">退出</span></div>
+	</div>
+</div>
+<!--<div class="line"></div>--><!--首页没有这条线，其他页面都有-->
+
+<!--顶部菜单-->
+
+<div class="index_bwapper"><!--轮播广告-->
+    <!--广告-->
+    <div class="index_banner_fullSlide">
+    <div class="index_banner v_show" >
+    	<div class="v_cont">
+        <ul >
+                <li index="0">
+                	<a href="#" target="_blank" ><div class="show_img" style="background-image:url(images/banner1.png);"></div></a>
+                </li>
+                <li index="1">
+                	<a href="#" target="_blank" ><div class="show_img" style="background-image:url(images/banner2.png);"></div></a>
+                </li >
+                <li index="2">
+                	<a href="#" target="_blank" ><div class="show_img" style="background-image:url(images/banner3.png);"></div></a>
+                </li >
+                 <li index="3">
+                	<a href="#" target="_blank" ><div class="show_img" style="background-image:url(images/banner1.png);"></div></a>
+                </li>
+                <li index="4">
+                	<a href="#" target="_blank" ><div class="show_img" style="background-image:url(images/banner2.png);"></div></a>
+                </li>
+                
+        </ul>
+        </div>
+        <div class="index_banner_wbtn" >
+        	<div class="index_b1 prev" style=""></div>
+        	<ul class=" circle">
+        		<li class="circle-cur"></li>
+        		<li></li>
+        		<li></li>
+        		<li></li>
+        		<li></li>
+        	</ul>
+        	<div class="index_b2 next"></div>
+        </div>
+    </div>
+    <!--广告-->
+
+</div>
+</div>
+
+<script type="text/javascript">
+  
+		 $(function(){
+		 	 	var l_num = $(".v_cont li").length;
+		 	 	var l_width = 100/l_num;
+		 	 	var c_width = 100*l_num;
+		 	 	$(".v_cont li").css("width",l_width+"%");
+		 	 	$(".v_cont").css("width",c_width+"%");
+		 	 	
+
+		 	/*	var time = setInterval(function () {nextscroll(); }, 5000);
+		 		
+		 		$(".index_banner_wbtn").mouseover(function(){
+		 			clearInterval(time);
+		 		}).mouseout(function(){
+		 			time = setInterval(function () {
+            		nextscroll(); }, 3000);
+		 		})
+*/
+				/*======next======*/
+				$(".next").click(function(){ nextscroll() });
+				function nextscroll(){
+						var vcon = $(".v_cont ");
+						var offset = ($(".v_cont li").width())*-1;	
+						vcon.stop().animate({left:offset},"slow",function(){
+							 var firstItem = $(".v_cont ul li").first();
+							 vcon.find("ul").append(firstItem);
+							 $(this).css("left","0px");
+							 circle()	
+						});  
+				};
+
+				function circle(){
+						var currentItem = $(".v_cont ul li").first();
+						var currentIndex = currentItem.attr("index");
+						$(".circle li").removeClass("circle-cur");
+						$(".circle li").eq(currentIndex).addClass("circle-cur");
+				}
+
+				//setInterval(nextscroll,2000)
+				 
+				/*======prev======*/
+				$(".prev").click(function(){
+						var vcon = $(".v_cont ");
+						var offset = ($(".v_cont li").width()*-1);
+						var lastItem = $(".v_cont ul li").last();
+						vcon.find("ul").prepend(lastItem);
+						vcon.css("left",offset);
+						vcon.animate({left:"0px"},"slow",function(){
+							 circle()
+						})
+				 });
+
+			   /*======btn====circle======*/
+				 var animateEnd = 1;
+				$(".circle li").mouseover(function(){
+					   if(animateEnd==0){return;}
+					   $(this).addClass("circle-cur").siblings().removeClass("circle-cur");
+						var nextindex = $(this).index();
+						var currentindex = $(".v_cont li").first().attr("index");
+
+						var curr = $(".v_cont li").first().clone();
+						//console.log("curr:"+curr);
+						if(nextindex > currentindex){
+								for (var i = 0; i < nextindex - currentindex; i++) {		 
+									 var firstItem = $(".v_cont li").first();
+									 $(".v_cont ul").append(firstItem); 		
+								}
+								$(".v_cont ul").prepend(curr);
+								var offset = ($(".v_cont li").width())*-1;
+								if(animateEnd==1){
+									animateEnd=0;	
+									$(".v_cont").stop().animate({left:offset},"slow",function(){
+											$(".v_cont ul li").first().remove();
+											$(".v_cont").css("left","0px");
+											animateEnd=1;
+									}); 
+								} 
+						}else{
+								var curt = $(".v_cont li").last().clone();
+								for (var i = 0; i < currentindex - nextindex; i++) {
+									 var lastItem = $(".v_cont li").last();
+									 $(".v_cont ul").prepend(lastItem);
+								}
+								$(".v_cont ul").append(curt);
+								var offset = ($(".v_cont li").width())*-1;
+								$(".v_cont").css("left",offset);
+								  if(animateEnd==1){
+										animateEnd=0;	
+										$(".v_cont").stop().animate({left:"0px"},"slow",function(){
+											
+											$(".v_cont ul li").last().remove();
+											animateEnd=1;
+										  
+										}); 
+
+									} 
+							
+							}
+
+				});
+
+		 })
+  
+</script>
+
+</body>
+</html>

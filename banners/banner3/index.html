@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<script src="js/jquery.min.js"></script>
+<script src="js/commonFn.js"></script>
+<style type="text/css">
+html,body,ul,li{margin:0;padding:0;font-family:Arial;-webkit-tab-highlight-color:transparent;list-style:none;}
+html{font-size:62.5%;}
+.top-scroll{position:relative;height:11rem;width:100%;}
+.slidw{width:100%;height:100%;overflow:hidden;}
+.top-scroll .slidw ul{width:100%;height:100%;white-space:nowrap;}
+.top-scroll .slidw ul li{width:100%;height:100%;background-image:url(images/topimg1.jpg) ;background-size:contain;display:inline-block;background-position:center center;background-repeat:no-repeat;position:relative;}
+.top-scroll .slidw ul li[livemod]::before{content:'直播';position:absolute;top:0.3rem;left:0.9rem;padding:0 1rem;font-size:0.9em;line-height:1.7rem;background:#e91e63;color:#fff;border-radius:1rem;}
+.top-scroll .slidw ul li[playbak]::before{content:'录播';position:absolute;top:0.3rem;left:0.9rem;padding:0 1rem;font-size:0.9em;line-height:1.7rem;background:#e91e63;color:#fff;border-radius:1rem;}
+.top-scroll .slidw ul li::after{content:attr(title);position:absolute;bottom:0;left:0;width:100%;font-size:0.9rem;background:rgba(0,0,0,0.2);color:#fff;text-align:center;line-height:1.7rem;}
+
+.top-scroll .swiper-pagination {width:100%; position:absolute;bottom:1.8rem;text-align:center; }
+.top-scroll .swiper-pagination .swiper-pagination-bullet { margin:0 5px;}
+
+
+
+
+/* 固定  */
+.swiper-pagination {position:absolute;text-align:center;-webkit-transition:.3s;-moz-transition:.3s; -o-transition:.3s;transition:.3s; -webkit-transform: translate3d(0,0,0); -ms-transform: translate3d(0,0,0); -o-transform: translate3d(0,0,0);transform: translate3d(0,0,0); z-index: 10}
+.swiper-pagination .swiper-pagination-hidden {opacity:0}
+.swiper-container-horizontal>.swiper-pagination-bullets,.swiper-pagination-custom,.swiper-pagination-fraction {bottom:10px;left:0;width:100%}
+.swiper-pagination-bullet {width:8px;height:8px;display:inline-block;border-radius: 100%;background: #000;opacity:.2}
+button .swiper-pagination-bullet {border:none;margin:0;padding:0;box-shadow:none;-moz-appearance:none;-ms-appearance:none;-webkit-appearance:none;    appearance:none}
+.swiper-pagination-clickable .swiper-pagination-bullet {cursor:pointer}
+.swiper-pagination-white .swiper-pagination-bullet {background:#fff}
+.swiper-pagination-bullet-active {opacity: 1;background:#007aff}
+.swiper-container-vertical>.swiper-pagination-bullets .swiper-pagination-bullet {margin:5px 0;display:block}
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {margin: 0 5px}
+
+/* 固定  */
+</style>
+</head>
+<body>
+<div class="top-scroll">
+	<div class="slidw swiper-container swiper-container-horizontal">
+		<ul class="swiper-wrapper">
+		    <li class="swiper-slide" data-src="images/topimg1.jpg" title="如何分析基本面" livemod></li>
+		    <li class="swiper-slide" data-src="images/topimg1.jpg" title="如何分析基本面" livemod></li>
+		    <li class="swiper-slide" data-src="images/topimg1.jpg" title="如何分析基本面" playbak></li>
+		    <li class="swiper-slide" data-src="images/topimg1.jpg" title="如何分析基本面" playbak></li>
+		    <li class="swiper-slide" data-src="images/topimg1.jpg" title="如何分析基本面" playbak></li>
+		    <li class="swiper-slide" data-src="images/topimg1.jpg" title="如何分析基本面" playbak></li>
+		</ul>
+	</div>
+	<div class="slidw-pagination swiper-pagination"></div>
+</div>
+<script type="text/javascript">
+var topscroll = new Swiper('.slidw', {
+         pagination: '.slidw-pagination',
+         paginationClickable: true
+     });
+</script>
+</body>
+</html>

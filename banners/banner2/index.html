@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>闪屏轮播效果</title>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<style type="text/css">
+ul,li{padding:0;margin:0;}
+.index_bwapper{width:100%;height:278px;background:#fd3343;}
+.index_banner_fullSlide{margin:0 auto;width:100%;height:278px;position:relative;overflow:hidden;background:url(images/bannerbg.png) center top;}
+.index_banner{margin:0 auto;z-index:0;overflow:hidden;}
+.index_banner_list{width:100% !important;}
+.index_banner_list li{width:100% !important;width:100%;height:278px;overflow:hidden;text-align:center;}
+.index_banner_list li a{display:block;height:278px;}
+.index_banner_wbtn{position:absolute;bottom:10px;left:50%; overflow:hidden;padding:0; height:20px;}
+.index_banner_btn {float:left;height:20px;background:url(images/p5.png) repeat-x 0 0;}
+.index_banner_btn li{float:left;width:12px;height:13px;text-indent:-9999px;margin:3px 8px;cursor:pointer;background:url(images/p3.png) no-repeat -14px -22px;}
+.index_banner_btn .index_banner_hover{background:url(images/p3.png) no-repeat 0 -22px;}
+.index_b1{width:10px;height:20px;background:url(images/p3.png) no-repeat 0 -1px;float:left;}
+.index_b2{width:10px;height:20px;background:url(images/p3.png) no-repeat -12px -1px;float:left;}
+</style>
+</head>
+<body>
+<div class="index_bwapper"><!--轮播广告-->
+	<div class="index_banner_fullSlide">
+    <div class="index_banner">
+        <ul class="index_banner_list">
+                <li >
+                	<a href="#" target="_blank" style="background:url(images/banner1.png) no-repeat center top;"></a>
+                </li>
+                <li>
+                	<a href="#" target="_blank" style="background:url(images/banner2.png) no-repeat center top;"></a>
+                </li>
+                <li >
+                	<a href="#" target="_blank" style="background:url(images/banner3.png) no-repeat center top;"></a>
+                </li>
+                 <li >
+                	<a href="#" target="_blank" style="background:url(images/banner1.png) no-repeat center top;"></a>
+                </li>
+                <li >
+                	<a href="#" target="_blank" style="background:url(images/banner2.png) no-repeat center top;"></a>
+                </li>       
+        </ul>
+        <div class="index_banner_wbtn">
+        	<div class="index_b1"></div>
+        	<ul class="index_banner_btn"></ul>
+        	<div class="index_b2"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	banner();
+})
+function banner() {
+        var index = 1;
+        var len = $(".index_banner .index_banner_list li").length;
+        var btn_width=len*28;
+        var wbtn_width=btn_width+20;
+        var wbtn_left=-btn_width/2;
+        var time;
+        $(".index_banner_btn").css("width",btn_width+"px");
+        $(".index_banner_wbtn").css({"width":wbtn_width+"px","margin-left":wbtn_left+"px"});
+        for (i = 1; i <= len; i++) {
+            //$(".index_banner_list li").eq(i - 1).find("a").attr("title");
+            var Obtn = $("<li></li>").appendTo($(".index_banner .index_banner_btn"));
+        }
+        $(".index_banner .index_banner_btn li").eq(0).addClass('index_banner_hover');
+        $(".index_banner .index_banner_list li").eq(0).css("z-index", "1");
+        $(".index_banner .index_banner_btn li").mouseover(function () {
+            index = $(".index_banner .index_banner_btn li").index(this);
+            show(index);
+        })
+        time = setInterval(function () {
+            show(index);
+            index++;
+            if (index == len) { index = 0 }
+        }, 5000);
+
+        function show(index) {
+            $(".index_banner .index_banner_list li p").removeClass('index_banner_hover');
+            $(".index_banner .index_banner_list li").eq(index).find("p").addClass('index_banner_hover');
+
+            $(".index_banner .index_banner_btn li").eq(index).addClass('index_banner_hover').siblings("li").removeClass('index_banner_hover');
+            $(".index_banner .index_banner_list li").eq(index).fadeIn(900).siblings("li").fadeOut(600);
+        }
+    }
+</script>
+</body>
+
+</html>
